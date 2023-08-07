@@ -1,17 +1,18 @@
 // SPDX-License-Identifier: CC0
 pragma solidity >=0.6.4;
 
+/// @dev Specification for flash lenders compatible with ERC-7399
 interface IERC7399 {
     /// @dev The amount of currency available to be lent.
-    /// @param token The loan currency.
-    /// @return The amount of `token` that can be borrowed.
-    function maxFlashLoan(address token) external view returns (uint256);
+    /// @param asset The loan currency.
+    /// @return The amount of `asset` that can be borrowed.
+    function maxFlashLoan(address asset) external view returns (uint256);
 
     /// @dev The fee to be charged for a given loan.
-    /// @param token The loan currency.
-    /// @param amount The amount of tokens lent.
-    /// @return The amount of `token` to be charged for the loan, on top of the returned principal.
-    function flashFee(address token, uint256 amount) external view returns (uint256);
+    /// @param asset The loan currency.
+    /// @param amount The amount of assets lent.
+    /// @return The amount of `asset` to be charged for the loan, on top of the returned principal.
+    function flashFee(address asset, uint256 amount) external view returns (uint256);
 
     /// @dev Initiate a flash loan.
     /// @param loanReceiver The address receiving the flash loan
